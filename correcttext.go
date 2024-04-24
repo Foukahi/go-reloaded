@@ -49,18 +49,14 @@ func IsLower(s string) bool {
 
 func Capitalize(s string) string {
 	res := ""
-	if IsLower(string(s[0])) {
-		res += strings.ToUpper(string(s[0]))
-	} else {
-		res += string(s[0])
+	ch := []rune(s)
+
+	if len(ch) != 0 || IsLower(string(ch[0])) {
+		ch[0] = ch[0] - 32
 	}
-	for i := 1; i < len(s); i++ {
-		if s[i-1] >= 32 && s[i-1] <= 47 || s[i-1] >= 58 && s[i-1] <= 64 || s[i-1] >= 91 && s[i-1] <= 96 || s[i-1] >= 123 && s[i-1] <= 127 {
-			// res += string('+')
-			res += strings.ToUpper(string(s[i]))
-		} else {
-			res += strings.ToLower(string(s[i]))
-		}
+	for i := 0; i < len(ch); i++ {
+		res += string(ch[i])
 	}
+
 	return res
 }
