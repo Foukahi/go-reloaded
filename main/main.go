@@ -30,6 +30,6 @@ func main() {
 
 	text := stock.Modifie(string(cont))
 
-	stock.CreatFile(text, files[1])
+	os.WriteFile(files[1], []byte(text), 0644)
 
 }
