@@ -15,25 +15,21 @@ func AdjustQuote(s string) string {
 	tab := []rune(s)
 	res := ""
 	first := true
-	last := false
 	if len(tab) > 2 {
 		if tab[0] == '\'' {
 			first = false
-			last = true
 			if tab[1] == ' ' {
 				tab = append(tab[:1], tab[2:]...)
 			}
 		}
 		for i := 1; i < len(tab)-1; i++ {
-			if first && !last && tab[i] == '\'' && (tab[i-1] == ' ' || tab[i+1] == ' ') {
+			if first && tab[i] == '\'' && (tab[i-1] == ' ' || tab[i+1] == ' ') {
 				first = false
 				if tab[i+1] == ' ' {
 					tab = append(tab[:i+1], tab[i+2:]...)
 				}
-				last = true
 
-			} else if last && !first && tab[i] == '\'' && (tab[i-1] == ' ' || tab[i+1] == ' ') {
-				last = false
+			} else if !first && tab[i] == '\'' && (tab[i-1] == ' ' || tab[i+1] == ' ') {
 				if tab[i-1] == ' ' {
 					tab = append(tab[:i-1], tab[i:]...)
 				}
