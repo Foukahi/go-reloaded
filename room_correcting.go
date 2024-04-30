@@ -70,9 +70,9 @@ func CorrectAn(s string) string {
 			nxt := tab[i+1]
 			if len(nxt) != 0 && (nxt[0] == 'a' || nxt[0] == 'e' || nxt[0] == 'i' || nxt[0] == 'o' || nxt[0] == 'u' || nxt[0] == 'h' || nxt[0] == 'A' || nxt[0] == 'E' || nxt[0] == 'I' || nxt[0] == 'O' || nxt[0] == 'U' || nxt[0] == 'H') {
 				if tab[i] == "'a" {
-					tab[i] = "'AN"
+					tab[i] = "'An"
 				} else {
-					tab[i] = "AN"
+					tab[i] = "An"
 				}
 			}
 		}

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func HexToDec(s string) string {
@@ -25,45 +26,25 @@ func BinToDec(s string) string {
 }
 
 func Cap(s string) string {
-	res := ""
-	ch := []rune(s)
-
-	if IsString(string(ch[0])) && IsLower(string(ch[0])) {
-		ch[0] = ch[0] - 32
-	}
-	for i := 0; i < len(ch); i++ {
-		res += string(ch[i])
-	}
-
-	return res
+	s = strings.ToUpper(string(s[0])) + strings.ToLower(s[1:])
+	return s
 }
 
-func IsString(s string) bool {
-	res := false
-	str := []rune(s)
-
-	for i := 0; i < len(str); i++ {
-		if (str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z') {
-			res = true
-		} else {
-			res = false
-			break
+func SplitWhiteSpaces(s string) []string {
+	var res []string
+	ind := -1
+	for i := 0; i < len(s); i++ {
+		if s[i] == ' ' || s[i] == '\n' {
+			if ind != -1 {
+				res = append(res, s[ind:i])
+				ind = -1
+			}
+		} else if ind == -1 {
+			ind = i
 		}
 	}
-	return res
-}
-
-func IsLower(s string) bool {
-	res := false
-	str := []rune(s)
-
-	for i := 0; i < len(str); i++ {
-		if str[i] >= 'a' && str[i] <= 'z' {
-			res = true
-		} else {
-			res = false
-			break
-		}
+	if ind != -1 {
+		res = append(res, s[ind:])
 	}
 	return res
 }

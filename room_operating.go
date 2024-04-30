@@ -12,7 +12,9 @@ var (
 	blocker  string = "\033[31mYou have a problem in your options"
 )
 
-var transformations = map[string]func(string) string{
+type transformation func(string) string
+
+var transformations = map[string]transformation{
 	"(hex)": HexToDec,
 	"(bin)": BinToDec,
 	"(cap)": Cap,

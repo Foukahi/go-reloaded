@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 
 	"stock"
 )
@@ -50,6 +49,7 @@ func main() {
 		fmt.Println(Danger + "Something wrong check your files :)")
 		return
 	}
+	defer textFile.Close()
 
 	resFile, err := os.Create(outFile)
 	if err != nil {
@@ -65,9 +65,13 @@ func main() {
 			resFile.WriteString("\n")
 			continue
 		}
-		stock.Tab = strings.Fields(string(line))
-
+		stock.Tab = stock.SplitWhiteSpaces(string(line))
+		if stock.Tab == nil {
+			resFile.WriteString("\n")
+			continue
+		}
 		text := stock.Modifie()
 		resFile.WriteString(text + "\n")
 	}
+	defer resFile.Close()
 }

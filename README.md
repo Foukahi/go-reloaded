@@ -53,10 +53,6 @@ When using the tool, ensure the following:
    - Input: "There it was. A amazing rock!"
    - Expected Output: "There it was. An amazing rock!"
    
-7. **Whitespace Identification**:
-   - Input: "Python, JavaScript, and Go (programming languages)"
-   - Expected Output: "Python, JavaScript, and Go (programming languages)"
-
 ## Usage
 
 ```bash
